@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AiTwotoneShop } from 'react-icons/ai';
 import { TiShoppingCart } from 'react-icons/ti';
 import { HiPencilAlt } from 'react-icons/hi';
-import { auth } from '../firebase-config';
+// import { auth } from '../api/firebase-config';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getAuth, signOut } from 'firebase/auth';
 
@@ -13,29 +13,29 @@ export default function Header() {
   console.log('userData: ', userData);
 
   function handleGoogleLogin() {
-    const provider = new GoogleAuthProvider(); // provider 구글 설정
-    signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
-      .then((data) => {
-        setUserData(data.user); // user data 설정
-        console.log(data); // console에 UserCredentialImpl 출력
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // const provider = new GoogleAuthProvider(); // provider 구글 설정
+    // signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
+    //   .then((data) => {
+    //     setUserData(data.user); // user data 설정
+    //     console.log(data); // console에 UserCredentialImpl 출력
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
   function handleGoogleLogout() {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-				console.log('successful: ');
-				navigate('/');
-				setUserData(null);
-      })
-      .catch((err) => {
-        // An error happened.
-				console.log(err);
-      });
+    // signOut(auth)
+    //   .then(() => {
+    //     // Sign-out successful.
+		// 		console.log('successful: ');
+		// 		navigate('/');
+		// 		setUserData(null);
+    //   })
+    //   .catch((err) => {
+    //     // An error happened.
+		// 		console.log(err);
+    //   });
   }
 
   return (
