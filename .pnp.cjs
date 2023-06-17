@@ -36,6 +36,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cloudinary", "npm:1.37.1"],\
             ["eslint-config-react-app", "virtual:16e654a9d365e02f7e28ac465e17fac93840604085351a9f6343f69b3a793d34618b538eea2150d2f1f567e908e7676db665faf19a175c38c1abccd63a770793#npm:7.0.1"],\
             ["firebase", "npm:9.22.2"],\
+            ["firebaseui", "virtual:16e654a9d365e02f7e28ac465e17fac93840604085351a9f6343f69b3a793d34618b538eea2150d2f1f567e908e7676db665faf19a175c38c1abccd63a770793#npm:6.0.2"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:16e654a9d365e02f7e28ac465e17fac93840604085351a9f6343f69b3a793d34618b538eea2150d2f1f567e908e7676db665faf19a175c38c1abccd63a770793#npm:18.2.0"],\
             ["react-icons", "virtual:16e654a9d365e02f7e28ac465e17fac93840604085351a9f6343f69b3a793d34618b538eea2150d2f1f567e908e7676db665faf19a175c38c1abccd63a770793#npm:4.9.0"],\
@@ -9101,6 +9102,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["dialog-polyfill", [\
+        ["npm:0.4.10", {\
+          "packageLocation": "./.yarn/cache/dialog-polyfill-npm-0.4.10-bd12634f12-f5f472542a.zip/node_modules/dialog-polyfill/",\
+          "packageDependencies": [\
+            ["dialog-polyfill", "npm:0.4.10"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["didyoumean", [\
         ["npm:1.2.2", {\
           "packageLocation": "./.yarn/cache/didyoumean-npm-1.2.2-fd568ec571-d5d98719d5.zip/node_modules/didyoumean/",\
@@ -10495,6 +10505,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@firebase/storage", "virtual:c2f36f610f5fd659b6a6814814c89c003d379bda23cddb8be44e59e6090b6c8a9ac6d5b72735559ee8b720468fafcb58014c3b8a94d4b5890e3af1dbaabe505b#npm:0.11.2"],\
             ["@firebase/storage-compat", "virtual:c2f36f610f5fd659b6a6814814c89c003d379bda23cddb8be44e59e6090b6c8a9ac6d5b72735559ee8b720468fafcb58014c3b8a94d4b5890e3af1dbaabe505b#npm:0.3.2"],\
             ["@firebase/util", "npm:1.9.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["firebaseui", [\
+        ["npm:6.0.2", {\
+          "packageLocation": "./.yarn/cache/firebaseui-npm-6.0.2-e195b96943-bbf88171ac.zip/node_modules/firebaseui/",\
+          "packageDependencies": [\
+            ["firebaseui", "npm:6.0.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:16e654a9d365e02f7e28ac465e17fac93840604085351a9f6343f69b3a793d34618b538eea2150d2f1f567e908e7676db665faf19a175c38c1abccd63a770793#npm:6.0.2", {\
+          "packageLocation": "./.yarn/__virtual__/firebaseui-virtual-f6ea323053/0/cache/firebaseui-npm-6.0.2-e195b96943-bbf88171ac.zip/node_modules/firebaseui/",\
+          "packageDependencies": [\
+            ["firebaseui", "virtual:16e654a9d365e02f7e28ac465e17fac93840604085351a9f6343f69b3a793d34618b538eea2150d2f1f567e908e7676db665faf19a175c38c1abccd63a770793#npm:6.0.2"],\
+            ["@types/firebase", null],\
+            ["dialog-polyfill", "npm:0.4.10"],\
+            ["firebase", "npm:9.22.2"],\
+            ["material-design-lite", "npm:1.3.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/firebase",\
+            "firebase"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -13328,6 +13362,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["makeerror", "npm:1.0.12"],\
             ["tmpl", "npm:1.0.5"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["material-design-lite", [\
+        ["npm:1.3.0", {\
+          "packageLocation": "./.yarn/cache/material-design-lite-npm-1.3.0-67115c6554-f5d45f8440.zip/node_modules/material-design-lite/",\
+          "packageDependencies": [\
+            ["material-design-lite", "npm:1.3.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -17421,6 +17464,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cloudinary", "npm:1.37.1"],\
             ["eslint-config-react-app", "virtual:16e654a9d365e02f7e28ac465e17fac93840604085351a9f6343f69b3a793d34618b538eea2150d2f1f567e908e7676db665faf19a175c38c1abccd63a770793#npm:7.0.1"],\
             ["firebase", "npm:9.22.2"],\
+            ["firebaseui", "virtual:16e654a9d365e02f7e28ac465e17fac93840604085351a9f6343f69b3a793d34618b538eea2150d2f1f567e908e7676db665faf19a175c38c1abccd63a770793#npm:6.0.2"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:16e654a9d365e02f7e28ac465e17fac93840604085351a9f6343f69b3a793d34618b538eea2150d2f1f567e908e7676db665faf19a175c38c1abccd63a770793#npm:18.2.0"],\
             ["react-icons", "virtual:16e654a9d365e02f7e28ac465e17fac93840604085351a9f6343f69b3a793d34618b538eea2150d2f1f567e908e7676db665faf19a175c38c1abccd63a770793#npm:4.9.0"],\

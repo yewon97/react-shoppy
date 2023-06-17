@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function ProductsCard({ product }) {
 	const {id, name, category, price} = product;
+	
   return (
     <li>
       <Link to={`/products/${id}`}>
