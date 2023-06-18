@@ -4,25 +4,15 @@ import { AiTwotoneShop } from 'react-icons/ai';
 import { TiShoppingCart } from 'react-icons/ti';
 import { HiPencilAlt } from 'react-icons/hi';
 import { login, logout, onUserStateChange } from '../api/firebase';
+import User from './User';
 
 export default function Header() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    onUserStateChange((user) => {
-      console.log(user);
-      setUser(user);
-    });
+    onUserStateChange(setUser);
   }, []);
-
-  const handleLogin = () => {
-    login().then(setUser);
-  };
-
-  const handleLogout = () => {
-    logout().then(setUser);
-  };
 
   return (
     <header className="border-b-2 sticky top-0 left-0 right-0 h-20 bg-white">
@@ -65,15 +55,14 @@ export default function Header() {
                 <HiPencilAlt />
               </Link>
             </li>
-            <li className="flex items-center gap-2">
-              <img src="" alt="" className="w-10 h-10 rounded-full" />
-              <p className="text-lg text-gray-900">dpdnjs402</p>
-            </li>
+            <li>
+							<User user={user} />
+						</li>
             <li>
               <button
                 type="button"
                 className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 rounded-lg text-sm px-5 py-2.5 text-center font-bold"
-                onClick={user ? handleLogout : handleLogin}
+                onClick={user ? logout : login}
               >
                 {user ? 'Logout' : 'Login'}
               </button>
