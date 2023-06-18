@@ -1,42 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiTwotoneShop } from 'react-icons/ai';
 import { TiShoppingCart } from 'react-icons/ti';
 import { HiPencilAlt } from 'react-icons/hi';
-// import { auth } from '../api/firebase-config';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { getAuth, signOut } from 'firebase/auth';
+import { login, logout, onUserStateChange } from '../api/firebase';
 
 export default function Header() {
-	const navigate = useNavigate();
-  const [userData, setUserData] = useState(null);
-  console.log('userData: ', userData);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
-  function handleGoogleLogin() {
-    // const provider = new GoogleAuthProvider(); // provider 구글 설정
-    // signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
-    //   .then((data) => {
-    //     setUserData(data.user); // user data 설정
-    //     console.log(data); // console에 UserCredentialImpl 출력
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-  }
+  useEffect(() => {
+    onUserStateChange((user) => {
+      console.log(user);
+      setUser(user);
+    });
+  }, []);
 
-  function handleGoogleLogout() {
-    // signOut(auth)
-    //   .then(() => {
-    //     // Sign-out successful.
-		// 		console.log('successful: ');
-		// 		navigate('/');
-		// 		setUserData(null);
-    //   })
-    //   .catch((err) => {
-    //     // An error happened.
-		// 		console.log(err);
-    //   });
-  }
+  const handleLogin = () => {
+    login().then(setUser);
+  };
+
+  const handleLogout = () => {
+    logout().then(setUser);
+  };
 
   return (
     <header className="border-b-2 sticky top-0 left-0 right-0 h-20 bg-white">
@@ -71,45 +57,25 @@ export default function Header() {
                 </span>
               </Link>
             </li>
-            {userData ? (
-              <>
-                <li>
-                  <Link
-                    to={'/admin'}
-                    className="hover:text-rose-400 text-3xl text-gray-900 relative"
-                  >
-                    <HiPencilAlt />
-                  </Link>
-                </li>
-
-                <li className="flex items-center gap-2">
-                  <img
-                    src={userData.photoURL}
-                    alt=""
-                    className="w-10 h-10 rounded-full"
-                  />
-                  <p className="text-lg text-gray-900">
-                    {userData.displayName}
-                  </p>
-                </li>
-								<li>
-								<button
-									type="button"
-									className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 rounded-lg text-sm px-5 py-2.5 text-center font-bold"
-									onClick={handleGoogleLogout}
-								>
-									Logout
-								</button>
-							</li>
-              </>
-            ) : null}
+            <li>
+              <Link
+                to={'/admin'}
+                className="hover:text-rose-400 text-3xl text-gray-900 relative"
+              >
+                <HiPencilAlt />
+              </Link>
+            </li>
+            <li className="flex items-center gap-2">
+              <img src="" alt="" className="w-10 h-10 rounded-full" />
+              <p className="text-lg text-gray-900">dpdnjs402</p>
+            </li>
             <li>
               <button
                 type="button"
                 className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 rounded-lg text-sm px-5 py-2.5 text-center font-bold"
-                onClick={handleGoogleLogin}
+                onClick={user ? handleLogout : handleLogin}
               >
-                {userData ? 'Logout' : 'Login'}
+                {user ? 'Logout' : 'Login'}
               </button>
             </li>
           </ul>
