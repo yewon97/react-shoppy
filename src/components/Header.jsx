@@ -4,7 +4,6 @@ import { AiTwotoneShop } from 'react-icons/ai';
 import { TiShoppingCart } from 'react-icons/ti';
 import { HiPencilAlt } from 'react-icons/hi';
 import {
-  getAdminData,
   login,
   logout,
   onUserStateChange,
@@ -13,12 +12,8 @@ import User from './User';
 
 export default function Header() {
   const [user, setUser] = useState(null);
-  const [adminId, setAdminId] = useState(null);
 
   useEffect(() => {
-    getAdminData((admin) => {
-      setAdminId(admin);
-    });
     onUserStateChange(setUser);
   }, []);
 
@@ -55,7 +50,7 @@ export default function Header() {
                 </span>
               </Link>
             </li>
-            {user?.email === adminId?.id && (
+            {user?.isAdmin && (
               <li>
                 <Link
                   to={'/admin'}

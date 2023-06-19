@@ -29,20 +29,21 @@ export function logout() {
 }
 
 export function onUserStateChange(callback) {
-  onAuthStateChanged(auth, (user) => {
-    callback(user);
+  onAuthStateChanged(auth, async (user) => {
+    const updateUser = user ? await adminUser(user) : null;
+    callback(updateUser);
   });
 }
 
-export function getAdminData(callback) {
-  const dbRef = ref(database);
-  get(child(dbRef, `/admins`))
+async function adminUser(user) {
+  return get(child(ref(database), `admins`))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        callback(snapshot.val());
-      } else {
-        console.log('No data available');
+        const admins = snapshot.val();
+        const isAdmin = admins.includes(user.uid);
+        return { ...user, isAdmin };
       }
+      return user;
     })
     .catch((error) => {
       console.error(error);

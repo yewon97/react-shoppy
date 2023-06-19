@@ -8,7 +8,7 @@ export default function User({ user: { displayName, photoURL } }) {
         alt="Avatar Thumbnail"
         className="w-10 h-10 rounded-full"
       />
-      <p className="text-lg text-gray-900 hidden md:block">{displayName}</p>
+      <p className="text-md text-gray-900 hidden md:block">{displayName}</p>
     </div>
   );
 }
