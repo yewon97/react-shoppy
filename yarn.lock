@@ -1969,7 +1969,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@firebase/app@npm:0.9.12":
+"@firebase/app@npm:0.9.12, @firebase/app@npm:^0.9.12":
   version: 0.9.12
   resolution: "@firebase/app@npm:0.9.12"
   dependencies:
@@ -12569,6 +12569,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "shoppy@workspace:."
   dependencies:
+    "@firebase/app": ^0.9.12
     "@tanstack/react-query": ^4.29.12
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": ^13.4.0
