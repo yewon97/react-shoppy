@@ -1,12 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from './components/Header';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <>
-      <Header />
+      <Navbar />
       <main id="main" className="w-full max-w-screen-xl mx-auto mb-20 flex-1">
         <Outlet />
       </main>

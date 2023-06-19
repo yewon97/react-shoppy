@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AiTwotoneShop } from 'react-icons/ai';
 import { TiShoppingCart } from 'react-icons/ti';
 import { HiPencilAlt } from 'react-icons/hi';
-import {
-  login,
-  logout,
-  onUserStateChange,
-} from '../api/firebase';
+import { login, logout, onUserStateChange } from '../api/firebase';
 import User from './User';
+import Button from './ui/Button';
 
-export default function Header() {
+function Navbar() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -50,7 +47,7 @@ export default function Header() {
                 </span>
               </Link>
             </li>
-            {user?.isAdmin && (
+            {user && user.isAdmin && (
               <li>
                 <Link
                   to={'/admin'}
@@ -61,18 +58,13 @@ export default function Header() {
               </li>
             )}
             {user && (
-              <li>
+              <li className="shrink-0">
                 <User user={user} />
               </li>
             )}
             <li>
-              <button
-                type="button"
-                className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 rounded-lg text-sm px-5 py-2.5 text-center font-bold"
-                onClick={user ? logout : login}
-              >
-                {user ? 'Logout' : 'Login'}
-              </button>
+              {user && <Button text={'Logout'} onClick={logout} />}
+              {!user && <Button text={'Login'} onClick={login} />}
             </li>
           </ul>
         </nav>
@@ -80,3 +72,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default Navbar;
