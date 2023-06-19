@@ -3,14 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AiTwotoneShop } from 'react-icons/ai';
 import { TiShoppingCart } from 'react-icons/ti';
 import { HiPencilAlt } from 'react-icons/hi';
-import { login, logout, onUserStateChange } from '../api/firebase';
+import {
+  getAdminData,
+  login,
+  logout,
+  onUserStateChange,
+} from '../api/firebase';
 import User from './User';
 
 export default function Header() {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  const [adminId, setAdminId] = useState(null);
 
   useEffect(() => {
+    getAdminData((admin) => {
+      setAdminId(admin);
+    });
     onUserStateChange(setUser);
   }, []);
 
@@ -47,17 +55,21 @@ export default function Header() {
                 </span>
               </Link>
             </li>
-            <li>
-              <Link
-                to={'/admin'}
-                className="hover:text-rose-400 text-3xl text-gray-900 relative"
-              >
-                <HiPencilAlt />
-              </Link>
-            </li>
-            <li>
-							<User user={user} />
-						</li>
+            {user?.email === adminId?.id && (
+              <li>
+                <Link
+                  to={'/admin'}
+                  className="hover:text-rose-400 text-3xl text-gray-900 relative"
+                >
+                  <HiPencilAlt />
+                </Link>
+              </li>
+            )}
+            {user && (
+              <li>
+                <User user={user} />
+              </li>
+            )}
             <li>
               <button
                 type="button"
