@@ -6,13 +6,10 @@ import { HiPencilAlt } from 'react-icons/hi';
 import { login, logout, onUserStateChange } from '../api/firebase';
 import User from './User';
 import Button from './ui/Button';
+import { useAuthContext } from '../context/AuthContext';
 
 function Navbar() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    onUserStateChange(setUser);
-  }, []);
+  const { user, login, logout } = useAuthContext();
 
   return (
     <header className="border-b-2 sticky top-0 left-0 right-0 h-20 bg-white">
@@ -36,17 +33,19 @@ function Navbar() {
                 Products
               </Link>
             </li>
-            <li>
-              <Link
-                to={'/cart'}
-                className="hover:text-rose-400 text-3xl text-gray-900 relative"
-              >
-                <TiShoppingCart />
-                <span className="inline-flex items-center justify-center px-1 py-0.5 text-white bg-red-500  rounded-full absolute -translate-y-1/2 translate-x-1/2 left-auto top-0 right-0 text-xs font-medium leading-none">
-                  8
-                </span>
-              </Link>
-            </li>
+            {user && (
+              <li>
+                <Link
+                  to={'/cart'}
+                  className="hover:text-rose-400 text-3xl text-gray-900 relative"
+                >
+                  <TiShoppingCart />
+                  <span className="inline-flex items-center justify-center px-1 py-0.5 text-white bg-red-500  rounded-full absolute -translate-y-1/2 translate-x-1/2 left-auto top-0 right-0 text-xs font-medium leading-none">
+                    8
+                  </span>
+                </Link>
+              </li>
+            )}
             {user && user.isAdmin && (
               <li>
                 <Link
