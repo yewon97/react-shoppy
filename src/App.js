@@ -8,7 +8,7 @@ function App() {
   return (
     <AuthContextProvider>
       <Navbar />
-      <main id="main" className="w-full max-w-screen-xl mx-auto mb-20 flex-1">
+      <main id="main" className="w-full max-w-screen-xl mx-auto mb-20 flex-1 relative mt-20">
         <Outlet />
       </main>
 			<Footer />

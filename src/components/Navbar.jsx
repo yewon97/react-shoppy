@@ -12,7 +12,7 @@ function Navbar() {
   const { user, login, logout } = useAuthContext();
 
   return (
-    <header className="border-b-2 sticky top-0 left-0 right-0 h-20 bg-white">
+    <header className="border-b-2 fixed top-0 left-0 right-0 h-20 bg-white">
       <section className="flex items-center justify-between max-w-screen-xl mx-auto h-full px-10">
         <h1>
           <Link to="/" className="flex items-center gap-x-3">
