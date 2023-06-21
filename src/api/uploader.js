@@ -1,0 +1,1 @@
+// http://res.cloudinary.com/ddn2wvoro
