@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React  from 'react';
 import { Link } from 'react-router-dom';
 import { AiTwotoneShop } from 'react-icons/ai';
 import { TiShoppingCart } from 'react-icons/ti';
 import { HiPencilAlt } from 'react-icons/hi';
-import { login, logout, onUserStateChange } from '../api/firebase';
 import User from './User';
 import Button from './ui/Button';
 import { useAuthContext } from '../context/AuthContext';

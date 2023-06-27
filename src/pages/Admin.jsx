@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from '../components/ui/Button';
 import { uploadImage } from '../api/uploader';
 import { addNewProduct } from '../api/firebase';
 
