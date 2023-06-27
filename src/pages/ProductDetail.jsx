@@ -15,8 +15,8 @@ export default function ProductDetail() {
 
   return (
     <div key={id}>
-      <nav className="flex">
-        <ol className="inline-flex items-center space-x-1 md:space-x-3">
+      <nav className="flex px-4 pt-4">
+        <ol className="inline-flex items-center space-x-1 md:space-x-3 text-gray-500">
           <li className="inline-flex items-center">{category}</li>
           {/* <li className="inline-flex items-center">옷</li> */}
         </ol>
