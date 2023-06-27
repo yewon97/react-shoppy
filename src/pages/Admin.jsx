@@ -1,14 +1,31 @@
 import React, { useState } from 'react';
+import Button from '../components/ui/Button';
+import { uploadImage } from '../api/uploader';
+import { addNewProduct } from '../api/firebase';
 
 export default function Admin() {
   const [product, setProduct] = useState({});
   const [file, setFile] = useState();
+  const [isUploading, setIsUploading] = useState(false);
+  const [success, setSuccess] = useState();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsUploading(true);
+    uploadImage(file)
+      .then((url) => {
+        addNewProduct(product, url).then(() => {
+          setSuccess('성공적으로 제품이 추가되었습니다.');
+          setTimeout(() => {
+            setSuccess(null);
+          }, 4000);
+        });
+      })
+      .finally(() => setIsUploading(false));
   };
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-		console.log('files: ', files);
     if (name === 'file') {
       setFile(files && files[0]);
       return;
@@ -19,12 +36,17 @@ export default function Admin() {
   return (
     <section>
       <h2 className="text-2xl font-bold text-center pt-8">
-        새로운 제품 등록하기
+        {'<'} 새로운 제품 등록하기 {'>'}
       </h2>
+      {success && <p className="text-center mt-4 text-lg underline text-rose-500">✅ {success}</p>}
       <div className="mb-8 mt-8">
-				{
-					file && <img className="w-96 mx-auto" src={URL.createObjectURL(file)} alt="local file" />
-				}
+        {file && (
+          <img
+            className="w-96 mx-auto"
+            src={URL.createObjectURL(file)}
+            alt="local file"
+          />
+        )}
       </div>
       <form onSubmit={handleSubmit}>
         <fieldset>
@@ -114,7 +136,7 @@ export default function Admin() {
                 name="options"
                 id="options"
                 value={product.options ?? ''}
-                placeholder="옵션(,로 구분)"
+                placeholder="옵션들(콤마(,)로 구분)"
                 required
                 onChange={handleChange}
               />
@@ -125,15 +147,12 @@ export default function Admin() {
 
         <button
           type="submit"
-          className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 rounded-lg text-md px-5 py-4 mt-5 text-center font-bold w-full"
+          className="text-gray-900 bg-rose-300 focus:outline-none hover:bg-rose-400 rounded-lg text-md px-5 py-4 mt-5 text-center font-bold w-full disabled:bg-slate-300"
+          disabled={isUploading}
         >
-          제품 등록하기
+          {isUploading ? '업로드중...⛱' : '제품 등록하기'}
         </button>
       </form>
     </section>
   );
-}
-
-function inputText() {
-  return <div></div>;
 }
