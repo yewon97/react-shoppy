@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { getDatabase, ref, child, get, set, onValue } from 'firebase/database';
+import { getDatabase, ref, child, get, set } from 'firebase/database';
 import { v4 as uuid } from 'uuid';
 
 const firebaseConfig = {

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ProductsCard from '../components/ProductsCard';
-import axios from 'axios';
 import { getProducts } from '../api/firebase';
 import { useQuery } from '@tanstack/react-query';
 
