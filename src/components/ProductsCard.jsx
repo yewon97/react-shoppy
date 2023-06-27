@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function ProductsCard({ product }) {
-	const {id, name, category, price} = product;
-	
+export default function ProductsCard({
+  product: { id, title, category, price, image },
+}) {
   return (
-    <li>
+    <li className="rounded-lg shadow-md overflow-hidden cursor-pointer">
       <Link to={`/products/${id}`}>
-        <img src={`/images/${id}.webp`} alt="" />
+        <img src={image} alt={title} className="m-auto w-full" />
         <div className="p-2">
           <p className="text-sm text-gray-500">{category}</p>
-          <h2 className="text-base">{name}</h2>
-          <p className="text-right font-bold">{price}</p>
+          <h3 className="text-base truncate">{title}</h3>
+          <p className="text-right font-bold">
+            {`${price.toLocaleString('ko-KR', 'currency')}원`}
+          </p>
         </div>
       </Link>
     </li>

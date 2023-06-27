@@ -3,8 +3,12 @@ import React from 'react';
 export default function Banner() {
 	
 	return (
-		<div className="w-full h-[500px] overflow-hidden relative">
-			<img src="https://images.unsplash.com/photo-1574120153654-453fb26e6bd4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80" alt="배너 이미지" className="top-1/2 left-1/2 absolute translate-y-[-50%] translate-x-[-50%]" />
-		</div>
+		<section className="h-96 bg-rose-300 relative">
+			<div className="w-full h-full bg-cover bg-center bg-banner opacity-60"></div>
+			<div className="absolute w-full top-32 text-center text-white">
+				<h2 className="text-6xl font-bold ">Shop With Us</h2>
+				<p className="text-2xl mt-6 font-pacifico">Best Products, High Quality!</p>
+			</div>
+		</section>
 	)
 }

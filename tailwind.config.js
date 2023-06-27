@@ -8,7 +8,11 @@ module.exports = {
       pacifico: ['Pacifico', 'cursive'],
       sans: ['Noto Sans Korean', 'Arial', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+			backgroundImage: {
+				banner : `url('../public/images/banner/banner2.jpg')`
+			}
+		},
   },
   plugins: [],
 };

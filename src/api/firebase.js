@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { getDatabase, ref, child, get, set } from 'firebase/database';
+import { getDatabase, ref, child, get, set, onValue } from 'firebase/database';
 import { v4 as uuid } from 'uuid';
 
 const firebaseConfig = {
@@ -59,5 +59,15 @@ export async function addNewProduct(product, image) {
     price: parseInt(product.price),
     image,
     options: product.options.split(','),
+  });
+}
+
+export async function getProducts() {
+  return get(child(ref(database), 'products')).then((snapshot) => {
+    if (snapshot.exists()) {
+			console.log('snapshot.val(): ', snapshot.val());
+      return Object.values(snapshot.val());
+    }
+    return [];
   });
 }
