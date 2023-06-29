@@ -41,34 +41,37 @@ export default function ProductDetail() {
             {`${price.toLocaleString('ko-KR', 'currency')}원`}
           </p>
           <p className="text-lg mt-3 mb-10">{description}</p>
-          <ul className="flex gap-3 items-center">
-            {colors &&
-              colors.map((color, idx) => (
-                <li
-                  key={idx}
-                  className={`${
-                    selcolor === color
-                      ? 'outline-dashed outline-2 outline-rose-400'
-                      : ''
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="colorChip"
-                    id={`colorChip${idx}`}
-                    value={color}
-                    className={`sr-only peer/colorChip${idx}`}
-                    onChange={handleChange}
-                    checked={selcolor === color}
-                  />
-                  <label
-                    htmlFor={`colorChip${idx}`}
-                    className={`rounded-full border-4 border-gray-300 drop-shadow-lg w-10 h-10 cursor-pointer inline-block flex items-center justify-center`}
-                    style={{ backgroundColor: color }}
-                  ></label>
-                </li>
-              ))}
-          </ul>
+          <div className="flex items-center">
+						<span className="text-rose-400 font-bold">색상 :{' '}</span>
+            <ul className="flex gap-3 items-center m-4">
+              {colors &&
+                colors.map((color, idx) => (
+                  <li
+                    key={idx}
+                    className={`${
+                      selcolor === color
+                        ? 'outline-dashed outline-2 outline-rose-400'
+                        : ''
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="colorChip"
+                      id={`colorChip${idx}`}
+                      value={color}
+                      className={`sr-only peer/colorChip${idx}`}
+                      onChange={handleChange}
+                      checked={selcolor === color}
+                    />
+                    <label
+                      htmlFor={`colorChip${idx}`}
+                      className={`rounded-full border-4 border-gray-300 drop-shadow-lg w-10 h-10 cursor-pointer inline-block flex items-center justify-center`}
+                      style={{ backgroundColor: color }}
+                    ></label>
+                  </li>
+                ))}
+            </ul>
+          </div>
           <div className="flex items-center">
             <label htmlFor="select" className="text-rose-400 font-bold">
               옵션 :{' '}
