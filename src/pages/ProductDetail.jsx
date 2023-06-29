@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { TiShoppingCart } from 'react-icons/ti';
+import { BiCheck } from 'react-icons/bi';
 
 export default function ProductDetail() {
   const {
     state: {
-      product: { id, title, category, price, image, description, options },
+      product: {
+        id,
+        title,
+        category,
+        price,
+        image,
+        description,
+        options,
+        colors,
+      },
     },
   } = useLocation();
 
   const [selected, setSelected] = useState(options && options[0]);
+  const [selcolor, setSelcolor] = useState(colors && colors[0]);
   const handleSelect = (e) => setSelected(e.target.value);
   const handleClick = (e) => {};
+  const handleChange = (e) => setSelcolor(e.target.value);
 
   return (
     <div key={id}>
@@ -25,26 +37,46 @@ export default function ProductDetail() {
         <img className="w-full m-auto basis-6/12" src={image} alt={title} />
         <form className="w-full basis-6/12">
           <h2 className="text-3xl font-bold py-2">{title}</h2>
-          <p className="text-xl py-2 border-b border-gray-400">
+          <p className="text-xl py-2 border-b border-'gray-400">
             {`${price.toLocaleString('ko-KR', 'currency')}원`}
           </p>
           <p className="text-lg mt-3 mb-10">{description}</p>
-          <div className="flex items-center">
-            {/* {options &&
-              options.map((option, idx) => (
-                <button
+          <ul className="flex gap-3 items-center">
+            {colors &&
+              colors.map((color, idx) => (
+                <li
                   key={idx}
-                  type="button"
-                  className="py-2.5 px-5 text-base font-medium bg-white rounded-lg flex-1 uppercase border border-gray-300 drop-shadow-lg active:bg-rose-300 focus:outline-none focus:ring focus:ring-rose-300"
+                  className={`${
+                    selcolor === color
+                      ? 'outline-dashed outline-2 outline-rose-400'
+                      : ''
+                  }`}
                 >
-                  {option}
-                </button>
-              ))} */}
-            <label htmlFor="select" className="text-rose-400 font-bold">옵션 : </label>
+                  <input
+                    type="radio"
+                    name="colorChip"
+                    id={`colorChip${idx}`}
+                    value={color}
+                    className={`sr-only peer/colorChip${idx}`}
+                    onChange={handleChange}
+                    checked={selcolor === color}
+                  />
+                  <label
+                    htmlFor={`colorChip${idx}`}
+                    className={`rounded-full border-4 border-gray-300 drop-shadow-lg w-10 h-10 cursor-pointer inline-block flex items-center justify-center`}
+                    style={{ backgroundColor: color }}
+                  ></label>
+                </li>
+              ))}
+          </ul>
+          <div className="flex items-center">
+            <label htmlFor="select" className="text-rose-400 font-bold">
+              옵션 :{' '}
+            </label>
             <select
               name="select"
               id="select"
-							className="p-2 m-4 flex-1 border-2 border-dashed border-rose-400 outline-none"
+              className="p-2 m-4 flex-1 border-2 border-dashed border-rose-400 outline-none"
               value={selected}
               onChange={handleSelect}
             >
