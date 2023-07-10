@@ -74,12 +74,11 @@ export async function getProducts() {
 }
 
 export async function getCart(userId) {
-  return get(
-    child(ref(database, `carts/${userId}`)).then((snapshot) => {
+  return get(ref(database, `carts/${userId}`)) //
+    .then((snapshot) => {
       const items = snapshot.val() || {};
       return Object.values(items);
-    }),
-  );
+    });
 }
 
 export async function addOrUpdateToCart(userId, product) {
