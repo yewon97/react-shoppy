@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { getDatabase, ref, child, get, set } from 'firebase/database';
+import { getDatabase, ref, child, get, set, remove } from 'firebase/database';
 import { v4 as uuid } from 'uuid';
 
 const firebaseConfig = {
@@ -59,16 +59,33 @@ export async function addNewProduct(product, image) {
     price: parseInt(product.price),
     image,
     options: product.options.split(','),
-		colors: product.colors.split(','),
+    colors: product.colors.split(','),
   });
 }
 
 export async function getProducts() {
   return get(child(ref(database), 'products')).then((snapshot) => {
     if (snapshot.exists()) {
-			console.log('snapshot.val(): ', snapshot.val());
+      console.log('snapshot.val(): ', snapshot.val());
       return Object.values(snapshot.val());
     }
     return [];
   });
+}
+
+export async function getCart(userId) {
+  return get(
+    child(ref(database, `carts/${userId}`)).then((snapshot) => {
+      const items = snapshot.val() || {};
+      return Object.values(items);
+    }),
+  );
+}
+
+export async function addOrUpdateToCart(userId, product) {
+  return set(ref(database, `carts/${userId}/${product.id}`), product);
+}
+
+export async function removeFromCart(userId, productId) {
+  return remove(ref(database, `carts/${userId}/${productId}`));
 }

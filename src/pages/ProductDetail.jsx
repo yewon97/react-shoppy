@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { TiShoppingCart } from 'react-icons/ti';
-import { BiCheck } from 'react-icons/bi';
+import { useAuthContext } from '../context/AuthContext';
+import { addOrUpdateToCart } from '../api/firebase';
 
 export default function ProductDetail() {
+  const { uid } = useAuthContext();
+
   const {
     state: {
       product: {
@@ -22,7 +25,18 @@ export default function ProductDetail() {
   const [selected, setSelected] = useState(options && options[0]);
   const [selcolor, setSelcolor] = useState(colors && colors[0]);
   const handleSelect = (e) => setSelected(e.target.value);
-  const handleClick = (e) => {};
+  const handleClick = (e) => {
+    const product = {
+      id,
+      image,
+      title,
+      price,
+      option: selected,
+      color: selcolor,
+      quantity: 1,
+    };
+    addOrUpdateToCart(uid, product);
+  };
   const handleChange = (e) => setSelcolor(e.target.value);
 
   return (
@@ -42,7 +56,7 @@ export default function ProductDetail() {
           </p>
           <p className="text-lg mt-3 mb-10">{description}</p>
           <div className="flex items-center">
-						<span className="text-rose-400 font-bold">색상 :{' '}</span>
+            <span className="text-rose-400 font-bold">색상 : </span>
             <ul className="flex gap-3 items-center m-4">
               {colors &&
                 colors.map((color, idx) => (
